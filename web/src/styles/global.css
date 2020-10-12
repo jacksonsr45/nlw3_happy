@@ -1,0 +1,45 @@
+:root {
+    /*base color background*/
+    --color-background: #ebf2f5;
+
+    /*base color text and fields*/
+    --color-text-base: #FFF;
+  }
+  
+  html {
+    font-size: 60%; 
+  }
+    
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+      
+  html, body {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--color-text-base);
+  }
+  
+  body{
+    color: var(--color-text-base);
+    background-color: var(--color-background);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body, input, button, textarea{
+    font: 600 1.8rem Nunito, sans-serif;
+  }
+   
+  @media (min-width: 700px){
+    html {
+      font-size: 62.5%;
+    }
+  }
