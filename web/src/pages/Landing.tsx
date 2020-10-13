@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import '../styles/pages/landing.css'
 
@@ -21,9 +22,9 @@ function Landing() {
               <strong>Jacarezinho</strong>
               <span>Paraná</span>
             </div>
-            <a className="enter-app" href="">
+            <Link className="enter-app" to="/app">
               <img src={arrowRight} alt="App"/>
-            </a>
+            </Link>
           </main>
         </div>
       </div>
