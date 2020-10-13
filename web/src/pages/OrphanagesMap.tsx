@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import { Map, TileLayer } from 'react-leaflet'
+
 import mapMarkerImg from '../images/map-marker.svg'
 import Plus from '../images/plus.svg'
+
+import 'leaflet/dist/leaflet.css'
 
 import '../styles/pages/orphanages-maps.css'
 
@@ -22,7 +26,16 @@ function OrphanagesMaps() {
             </footer>
           </aside>
 
-          <div></div>
+          <Map 
+            center={[-22.986752,-49.8597888]}
+            zoom={14}
+            style={{
+              width: '100%',
+              height: '100%'
+            }}
+          >
+            <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+          </Map>
 
           <Link to="" className="create-orphanage">
             <img src={Plus} alt="Happy"/>
