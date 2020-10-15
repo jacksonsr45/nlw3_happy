@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
@@ -10,14 +10,24 @@ import mapMarkerImg from '../images/map-marker.svg'
 import Plus from '../images/plus.svg'
 import arrowRight from '../images/arrow-right.svg'
 
-import 'leaflet/dist/leaflet.css'
-
-
 import '../styles/pages/orphanages-maps.css'
+import api from '../services/api'
 
 
+interface Orphanage {
+  id: number
+  latitude: number
+  longitude: number
+  name: string
+}
 
 function OrphanagesMaps() {
+  const [orphanages, setOrphanages] = useState<Orphanage[]>([])
+  useEffect(() => {
+    api.get('orphanages').then(res => {
+      setOrphanages(res.data)
+    })
+  },[])
     return (
         <div id="page-map">
           <aside>
@@ -42,17 +52,23 @@ function OrphanagesMaps() {
             }}
           >
             <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-            <Marker
-              icon={mapIcon} 
-              position={[-23.1588226,-49.9858485]}
-            >
-              <Popup className="map-popup" closeButton={false} minWidth={240} maxWidth={240}>
-                Lar das meninas
-                <Link to="/orphanages/1">
-                  <img src={arrowRight} alt="Happy"/>
-                </Link>
-              </Popup>
-            </Marker>
+            
+            {orphanages.map(orphanage => {
+              return (
+                <Marker
+                  icon={mapIcon} 
+                  position={[orphanage.latitude,orphanage.longitude]}
+                  key={orphanage.id}
+                >
+                  <Popup className="map-popup" closeButton={false} minWidth={240} maxWidth={240}>
+                      {orphanage.name}
+                    <Link to={`/orphanages/${orphanage.id}`}>
+                      <img src={arrowRight} alt="Happy"/>
+                    </Link>
+                  </Popup>
+                </Marker>
+              )
+            })}
 
           </Map>
 
