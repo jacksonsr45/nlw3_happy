@@ -68,7 +68,7 @@ function OrphanagesMaps() {
                   </Popup>
                 </Marker>
               )
-            })}
+            })} 
 
           </Map>
 
